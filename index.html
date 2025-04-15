@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Macken & Macken AB</title>
+    <title>Pistvakter.se</title>
     <link rel="icon" href="favicon.ico" />
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -56,12 +56,8 @@
 
     <div class="p-6 max-w-5xl mx-auto space-y-12">
       <section class="text-center">
-        <img
-          src="images/macken.png"
-          alt="Macken & Macken logo"
-          class="w-24 mx-auto mb-4"
-        />
-        <h1 class="text-4xl font-bold mb-2">Macken & Macken AB</h1>
+        <img src="images/pistvakt.png" alt="Pistvakt logo" class="w-24 mx-auto mb-4" />
+        <h1 class="text-4xl font-bold mb-2">Pistvakter.se</h1>
         <p class="text-lg italic">
           "Det går bra nu"… men ingen vet riktigt varför.
         </p>
@@ -116,7 +112,7 @@
     <td>20:00</td>
     <td class="text-red-600 font-medium animate-pulse">Bokad</td>
   </tr>
-  <tr class="hover:bg-gray-50 cursor-pointer" title="Snabba på innan den ryker">
+  <tr class="hover:bg-pink-200 cursor-pointer" title="Torsdag = discodag! 💃🕺" onclick="startDisco(this)">
     <td class="py-1">Torsdag</td>
     <td>18:30</td>
     <td class="text-green-600 font-medium animate-bounce">Ledig</td>
@@ -208,7 +204,7 @@
       </section>
 
       <footer class="mt-16 text-center text-sm text-gray-500 dark:text-gray-400">
-        &copy; 2025 Macken & Macken AB. Alla rättigheter fördröjda.
+        &copy; 2025 Pistvakter.se. Alltid redo. Alltid i overall.
       </footer>
     </div>
 
@@ -227,5 +223,21 @@
         snowContainer.appendChild(flake);
       }
     </script>
-  </body>
+  <script>
+  function startDisco(row) {
+    const body = document.body;
+    let discoInterval = setInterval(() => {
+      const hue = Math.floor(Math.random() * 360);
+      body.style.backgroundColor = `hsl(${hue}, 80%, 85%)`;
+    }, 200);
+    row.title = "Discooo pågår! Klicka igen för att sluta 🪩";
+    row.onclick = () => {
+      clearInterval(discoInterval);
+      body.style.backgroundColor = "";
+      row.title = "Torsdag = discodag! 💃🕺";
+      row.onclick = () => startDisco(row);
+    };
+  }
+</script>
+</body>
 </html>
