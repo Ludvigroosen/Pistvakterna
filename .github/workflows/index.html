@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pistvakter.se</title>
+    <link rel="icon" href="favicon.ico" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .dark {
+        background-color: #e0f2f1;
+        color: #2e3b3c;
+      }
+      .dark a {
+        color: #00796b;
+      }
+      .dark input,
+      .dark textarea {
+        background-color: #f0fdfa;
+        border-color: #a7f3d0;
+        color: #004d40;
+      }
+      .dark button {
+        background-color: #4db6ac;
+        color: white;
+      }
+      .dark footer {
+        color: #004d40;
+      }
+    </style>
+    <script>
+      function toggleDark() {
+        document.documentElement.classList.toggle("dark");
+      }
+    </script>
+  </head>
+  <body class="transition-colors">
+    <div class="p-6 max-w-5xl mx-auto space-y-12">
+      <section class="text-center">
+        <img src="images/pistvakt.png" alt="Pistvakt logo" class="w-24 mx-auto mb-4" />
+        <h1 class="text-4xl font-bold mb-2">Pistvakter.se</h1>
+        <p class="text-lg italic">
+          "Det är kallt. Det är snö. Det är Pistvakt."
+        </p>
+      </section>
+
+      <div class="text-right">
+        <button onclick="toggleDark()" class="text-sm text-blue-600 hover:underline">
+          🌃 Växla mörkt läge
+        </button>
+      </div>
+
+      <section>
+        <h2 class="text-2xl font-semibold mb-2">Om fjället</h2>
+        <p>
+          På fjället gäller bara en sak: ansvar. Pistvakt.se är ett hommage till
+          hjältarna som vaktar backen, bastar med ansvar och aldrig släpper en
+          stav i onödan.
+        </p>
+      </section>
+
+      <!-- Team will be injected here -->
+
+      <div id="modal-placeholder"></div>
+
+      <section>
+        <h2 class="text-2xl font-semibold mb-4">Gästboken</h2>
+        <div class="space-y-4">
+          <div class="bg-blue-50 border border-blue-200 p-4 rounded-lg">
+            <p class="font-semibold">Kurt från Kalix</p>
+            <p class="text-sm">
+              “Satte mig i liften, kom aldrig ner. Bästa dagen i mitt liv.”
+            </p>
+          </div>
+          <div class="bg-blue-50 border border-blue-200 p-4 rounded-lg">
+            <p class="font-semibold">Barbro Bastu</p>
+            <p class="text-sm">
+              “Jag var i bastun. Sen blev jag kvar.”
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-semibold mb-2">Kontakt (typ)</h2>
+        <form class="space-y-4 max-w-md" onsubmit="event.preventDefault(); window.location.href='oops.html';">
+          <input placeholder="Ditt namn" class="w-full p-2 border border-gray-300 rounded" />
+          <input placeholder="Din e-post" class="w-full p-2 border border-gray-300 rounded" />
+          <textarea placeholder="Ditt meddelande..." class="w-full p-2 border border-gray-300 rounded"></textarea>
+          <button class="bg-gray-300 text-white px-4 py-2 rounded">Skicka (men det händer inget)</button>
+        </form>
+        <p class="text-sm text-gray-500 mt-2">Vi kanske svarar. Men förmodligen inte.</p>
+      </section>
+
+      <footer class="mt-16 text-center text-sm text-gray-500 dark:text-gray-400">
+        &copy; 2025 Pistvakter.se. Alltid redo. Alltid i overall.
+      </footer>
+    </div>
+
+    <script src="teamModal.js"></script>
+  </body>
+</html>

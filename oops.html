@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hoppsan!</title>
+    <link rel="icon" href="favicon.ico" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+        background: linear-gradient(to top, #e0f7fa, #fff);
+        background-repeat: no-repeat;
+        height: 100vh;
+        overflow: hidden;
+        position: relative;
+        backdrop-filter: blur(2px);
+      }
+      .snowflake {
+        color: #b2ebf2;
+        font-size: 1.5rem;
+        position: absolute;
+        top: -2rem;
+        animation: fall linear infinite;
+        opacity: 0.8;
+      }
+      @keyframes fall {
+        to {
+          transform: translateY(120vh);
+        }
+      }
+      .ski-track {
+        position: absolute;
+        width: 100vw;
+        height: 4px;
+        background: repeating-linear-gradient(
+          -45deg,
+          #8ecae6,
+          #8ecae6 10px,
+          #219ebc 10px,
+          #219ebc 20px
+        );
+        animation: moveTrack 4s linear infinite;
+        bottom: 0;
+      }
+      @keyframes moveTrack {
+        from {
+          background-position: 0 0;
+        }
+        to {
+          background-position: 100% 0;
+        }
+      }
+      .mouse-track {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: radial-gradient(circle, #8ecae6 0%, #219ebc 100%);
+        border-radius: 50%;
+        pointer-events: none;
+        opacity: 0.6;
+      }
+    </style>
+  </head>
+  <body class="text-center flex flex-col items-center justify-center p-6">
+    <h1 class="text-5xl font-bold mb-4">❄️ Hoppsan i fjället!</h1>
+    <p class="text-lg mb-2">Du klickade på något som inte leder någonstans.</p>
+    <p class="mb-6">
+      Det är som att gå ut i snöstormen utan stavar. Vänd tillbaka till tryggheten.
+    </p>
+    <a href="index.html" class="text-blue-600 underline hover:text-blue-800" onclick="playSound()">
+      ⬅️ Tillbaka till pistvakter.se
+    </a>
+
+    <button onclick="location.reload(); playSound();" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded shadow hover:bg-blue-700">
+      ⛹️ Ladda om liften
+    </button>
+
+    <div class="mt-10 w-full max-w-xl bg-white shadow-lg rounded p-6">
+      <h2 class="text-xl font-bold mb-4">🌬️ Bastuschema (upplevs het!)</h2>
+      <table class="w-full text-left text-sm">
+        <thead>
+          <tr>
+            <th class="border-b py-2">Dag</th>
+            <th class="border-b py-2">Tid</th>
+            <th class="border-b py-2">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="py-1">Måndag</td><td>18:00</td><td class="text-red-500">Bokad</td></tr>
+          <tr><td class="py-1">Tisdag</td><td>19:00</td><td class="text-green-600">Ledig</td></tr>
+          <tr><td class="py-1">Onsdag</td><td>20:00</td><td class="text-red-500">Bokad</td></tr>
+          <tr><td class="py-1">Torsdag</td><td>18:30</td><td class="text-green-600">Ledig</td></tr>
+          <tr><td class="py-1">Fredag</td><td>21:00</td><td class="text-red-500">Bokad</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div id="snow-container"></div>
+    <div class="ski-track"></div>
+    <div class="mouse-track" id="mouse-track"></div>
+
+    <audio id="click-sound" preload="auto">
+      <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_39f92b64df.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+      const snowContainer = document.getElementById("snow-container");
+      for (let i = 0; i < 60; i++) {
+        const flake = document.createElement("div");
+        flake.className = "snowflake";
+        flake.style.left = Math.random() * 100 + "vw";
+        flake.style.animationDuration = 3 + Math.random() * 5 + "s";
+        flake.style.fontSize = 0.5 + Math.random() * 2 + "rem";
+        flake.innerHTML = "❄";
+        snowContainer.appendChild(flake);
+      }
+
+      const trail = document.getElementById("mouse-track");
+      document.addEventListener("mousemove", e => {
+        trail.style.left = e.pageX + "px";
+        trail.style.top = e.pageY + "px";
+      });
+
+      function playSound() {
+        const sound = document.getElementById("click-sound");
+        if (sound) sound.play();
+      }
+    </script>
+  </body>
+</html>
